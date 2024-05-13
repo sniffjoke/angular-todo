@@ -16,6 +16,9 @@
       />
       }
     </div>
+    <div>
+      <button class="button" (click)="deleteGroupEvent()">Удалить</button>
+    </div>
     <div class="group__title-underline"></div>
   </div>
 
@@ -39,8 +42,14 @@
         ></app-item-done>
       </ng-container>
     }
-    <!--    <ng-container *ngFor="let item of todoGroup.items; let i = index;">-->
-    <!--    </ng-container>-->
+    <input
+      type="text"
+      class="input"
+      placeholder="Название тудушки..."
+      #newTodo
+      (keyup.enter)="addNewTodo(newTodo.value); newTodo.value=''"
+    />
   </div>
+
 
 </div>

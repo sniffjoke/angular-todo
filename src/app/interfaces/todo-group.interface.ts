@@ -1,6 +1,6 @@
 export interface TodoGroup {
   title: string
-  items?: TodoItem[]
+  items: TodoItem[]
 }
 
 export interface TodoItem {

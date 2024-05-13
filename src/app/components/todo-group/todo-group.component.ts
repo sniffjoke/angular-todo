@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {TodoGroup} from "../../interfaces/todo-group.interface";
+import {TodoGroup, TodoItem, TodoStatus} from "../../interfaces/todo-group.interface";
 import {NgForOf, NgSwitch, NgSwitchCase} from "@angular/common";
 import {ItemNotStartedComponent} from "../todo-item/item-not-started/item-not-started.component";
 import {ItemDoneComponent} from "../todo-item/item-done/item-done.component";
@@ -10,7 +10,6 @@ import {FormsModule} from "@angular/forms";
   selector: 'app-todo-group',
   standalone: true,
   imports: [
-    // TodoItemBaseComponent,
     NgForOf,
     ItemNotStartedComponent,
     ItemDoneComponent,
@@ -27,13 +26,15 @@ export class TodoGroupComponent implements OnInit {
   @Input() todoGroup!: TodoGroup
   @Input() index!: number
 
-  @Output() changeTitleEvent: EventEmitter<{value: string, index: number}> = new EventEmitter<{value: string, index: number}>()
+  @Output() changeTitleEvent: EventEmitter<{ value: string, index: number }> = new EventEmitter<{ value: string, index: number }>()
+  @Output() deleteGroup = new EventEmitter<number>()
+  @Output() addNewItem = new EventEmitter<{ item: TodoItem, index: number }>()
 
   public isShowTitle = true
 
   public groupTitle?: string
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.groupTitle = this.todoGroup.title
     if (this.todoGroup.title === "") {
       this.isShowTitle = false
@@ -45,6 +46,21 @@ export class TodoGroupComponent implements OnInit {
 
     this.changeTitleEvent.emit({
       value: this.groupTitle!,
+      index: this.index
+    })
+  }
+
+  public deleteGroupEvent(): void {
+    this.deleteGroup.emit(this.index)
+  }
+
+  public addNewTodo(value: string) {
+    this.addNewItem.emit({
+      item: {
+        status: TodoStatus.NOT_STARTED,
+        title: value,
+        description: ''
+      },
       index: this.index
     })
   }

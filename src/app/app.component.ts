@@ -26,7 +26,7 @@ export class AppComponent {
           },
           {
             title: 'Сделать вторую часть',
-            description: 'Создаем Todo Angular стрим',
+            description: 'Создаем еще что-то',
             status: TodoStatus.NOT_STARTED
           },
           {
@@ -57,5 +57,13 @@ export class AppComponent {
 
   public handleNewItem(value: {item: TodoItem, index: number}) {
     this.todoGroups[value.index].items.push(value.item)
+  }
+
+  public handleChangeDescription(value: {description: string, indexGroup: number, indexItem: number}) {
+    this.todoGroups[value.indexGroup].items[value.indexItem].description = value.description
+  }
+
+  public handleChangeStatus(value: {status: TodoStatus, indexItem: number, groupIndex: number}): void {
+    this.todoGroups[value.groupIndex].items[value.indexItem].status = value.status
   }
 }

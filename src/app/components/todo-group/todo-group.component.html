@@ -29,6 +29,7 @@
           [todoItem]="item"
           *ngSwitchCase="'not_started'"
           (changeStatus)="handleChangeStatus($event)"
+          (deleteItem)="handleDeleteItem($event)"
           [index]="i"
           (eventChangeDescription)="handleChangeItemDescription($event)"
         ></app-item-not-started>
@@ -36,6 +37,7 @@
           [todoItem]="item"
           *ngSwitchCase="'in_progress'"
           (changeStatus)="handleChangeStatus($event)"
+          (deleteItem)="handleDeleteItem($event)"
           [index]="i"
           (eventChangeDescription)="handleChangeItemDescription($event)"
         ></app-item-in-progress>
@@ -43,6 +45,7 @@
           [todoItem]="item"
           *ngSwitchCase="'done'"
           (changeStatus)="handleChangeStatus($event)"
+          (deleteItem)="handleDeleteItem($event)"
           [index]="i"
           (eventChangeDescription)="handleChangeItemDescription($event)"
         ></app-item-done>

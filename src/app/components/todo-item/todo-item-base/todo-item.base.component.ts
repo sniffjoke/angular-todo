@@ -10,6 +10,7 @@ export class TodoItemBaseComponent implements OnInit {
 
   @Output() eventChangeDescription = new EventEmitter<{description: string, index: number}>()
   @Output() changeStatus = new EventEmitter<{status: TodoStatus, index: number}>()
+  @Output() deleteItem = new EventEmitter<number>()
 
   public todoStatus = TodoStatus
 
@@ -28,6 +29,10 @@ export class TodoItemBaseComponent implements OnInit {
 
   public emitChangeStatus(value: TodoStatus): void {
     this.changeStatus.emit({status: value, index: this.index})
+  }
+
+  public emitDeleteItem(): void {
+    this.deleteItem.emit(this.index)
   }
 
 }

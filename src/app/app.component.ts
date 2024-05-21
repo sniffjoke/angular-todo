@@ -66,4 +66,8 @@ export class AppComponent {
   public handleChangeStatus(value: {status: TodoStatus, indexItem: number, groupIndex: number}): void {
     this.todoGroups[value.groupIndex].items[value.indexItem].status = value.status
   }
+
+  public handleDeleteItem(value: {indexItem: number, indexGroup: number}): void {
+    this.todoGroups[value.indexGroup].items.splice(value.indexItem, 1)
+  }
 }

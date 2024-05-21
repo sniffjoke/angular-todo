@@ -23,7 +23,7 @@
        ></textarea>
        <div>
           <button class="button" (click)="emitChangeStatus(todoStatus.IN_PROGRESS)">В работе</button>
-          <button class="button">Удалить</button>
+          <button class="button" (click)="emitDeleteItem()">Удалить</button>
        </div>
   </div>
   }
